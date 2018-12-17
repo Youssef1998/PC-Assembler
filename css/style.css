@@ -7,12 +7,18 @@ html, body {margin: 0; height: 100%; overflow: hidden}
 	border: 15px solid black;
 
 }
+.add-btn{
+	color: #fff;
+    background-color: #f0ad4e;
+    border-color: #eea236;
+	width: 45px;
+}
 th{
 	text-align: center!important;
 }
 .table {
 	max-width: 111%!important;
-	width: 110%!important;
+	width: 108%!important;
 }
 .HomePageButtons {
 	text-align: center;
