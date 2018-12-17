@@ -26,9 +26,16 @@
 	<div class="Logo">	<img src="images/logo.png" alt="" height="70px" ></div>
 	</div>
 	<div class="header">
-	Completed PCs</div>
+	PC-Assembler</div>
 
-	
+	<form method="get" action="page1.php">
+		<button tybe="submit" class="btn btn-warning">Assemble your PC
+		</button>
+	</form>
+	<form method="get" action="pcs.html">
+		<button type="submit" class="btn btn-warning">Look up
+		Finshed PC</button>
+	</form>
 </body>
 <script>
 

@@ -1,3 +1,20 @@
+	
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "root";
+$database = "PC-Assembler";
+$con = mysqli_connect($servername, $username, $password, $database);
+// Check connection
+if (mysqli_connect_errno())
+{
+echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,12 +28,16 @@
 	<link href="http://fonts.googleapis.com/css?family=Josefin+Slab:400,700" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" type="text/css" href="css/demo.css" />
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
+
+	
 	<script type="text/javascript" src="js/modernizr.custom.79639.js"></script> 
 
 
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
 </head>
 <body>
 	<div class="container">
@@ -32,33 +53,23 @@
 			<input type="radio" name="radio-set" id="st-control-4"/>
 			<a href="#st-panel-4">MEMORY</a>
 		
-			<inbut tybe="radio"name="radio-set"id="st-control-10"></inbut>
-			<a href="page2.html">NEXT</a>
+			<inbut tybe="radio" name="radio-set" id="st-control-10">
+			</inbut>
+			<a href="page2.php">NEXT</a>
 				
 
 			
 
 			<div class="st-scroll">
-<!--
 
-				<section class="st-panel" id="st-panel-1">
-					<div class="NavBar">
-						<div class="Logo">	<img src="images/logo.png" alt="" height="70px" ></div>
+				<section class="st-panel " id="st-panel-1">
+					<div class="NavBar"><div class="Logo">
+						<img src="images/logo.png" alt="" height="70px" ></div>
 					</div>
 					
-					<div class="HomePageButtons">
-						<button type="button" class="btn btn-primary">Start Building</button>
-						<button class="btn btn-primary"> BUY ME 2</button>
-						<hr>
-					</div>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus laudantium dolore nisi quidem cupiditate accusamus. Unde consectetur quia amet similique nobis beatae, dignissimos, earum delectus, ut tempora repellendus voluptate molestiae.</p>
-				</section>
--->
-				<section class="st-panel " id="st-panel-1">
-					<div class="NavBar"><div class="Logo">	<img src="images/logo.png" alt="" height="70px" ></div></div>
 					<div id="FirstPageContent">
 						<h2>CPU</h2>
-						<div class="test">
+						<div class="test" >
 							<table>
 								<table class="table table-hover table-striped">
 									<thead>
@@ -72,34 +83,27 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<th scope="row">1</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
-										<tr>
-											<th scope="row">2</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
-										<tr>
-											<th scope="row">3</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
+									<?php
+									$result = mysqli_query($con,"SELECT * FROM cpu");
+									while($row = mysqli_fetch_array($result))
+									{
+									echo "<tr>";
+									echo "<td>" . $row['#'] . "</td>";
+									echo "<td>" . $row['NAME'] . "</td>";
+									echo "<td>" . $row['SPEED'] . "</td>";
+									echo "<td>" . $row['CORES'] . "</td>";
+									echo "<td>" . $row['PRICE'] . "</td>";
+									echo "</tr>";
+									}
+									
+									?> 
+
 									</tbody>
 								</table>
 							</table>
+							
 						</div>
+
 					</div>
 				</section>
 				<section class="st-panel" id="st-panel-2">
@@ -112,38 +116,31 @@
 									<thead>
 										<tr>
 											<th scope="col-md-5">#</th>
-											<th scope="col">CPU</th>
-											<th scope="col">SPEED</th>
-											<th scope="col">CORES</th>
+											<th scope="col">CPU COOLER</th>
+											<th scope="col">FAN RPM</th>
+											<th scope="col">NOISE LEVEL</th>
 											<th scope="col">PRICE</th>
 											<th scope="col"></th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<th scope="row">1</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
-										<tr>
-											<th scope="row">2</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
-										<tr>
-											<th scope="row">3</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
+											
+									<?php
+									$result = mysqli_query($con,"SELECT * FROM cpuCooler");
+									while($row = mysqli_fetch_array($result))
+									{
+									echo "<tr>";
+									echo "<td>" . $row['#'] . "</td>";
+									echo "<td>" . $row['NAME'] . "</td>";
+									echo "<td>" . $row['FAN RPM'] . "</td>";
+									echo "<td>" . $row['NOISE LEVEL'] . "</td>";
+									echo "<td>" . $row['PRICE'] . "</td>";
+									echo "</tr>";
+									}
+									
+									?> 
+
+									
 									</tbody>
 								</table>
 							</table>
@@ -160,38 +157,35 @@
 									<thead>
 										<tr>
 											<th scope="col-md-5">#</th>
-											<th scope="col">CPU</th>
-											<th scope="col">SPEED</th>
-											<th scope="col">CORES</th>
+											<th scope="col">MOTHERBOARD</th>
+											<th scope="col">SOCKET/CPU</th>
+											<th scope="col">FORM FACTOR</th>
+											<th scope="col">RAM SLOTS</th>
+											<th scope="col">MAX RAM</th>
 											<th scope="col">PRICE</th>
 											<th scope="col"></th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<th scope="row">1</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
-										<tr>
-											<th scope="row">2</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
-										<tr>
-											<th scope="row">3</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
+											
+									<?php
+									$result = mysqli_query($con,"SELECT * FROM motherboard");
+									while($row = mysqli_fetch_array($result))
+									{
+									echo "<tr>";
+									echo "<td>" . $row['#'] . "</td>";
+									echo "<td>" . $row['NAME'] . "</td>";
+									echo "<td>" . $row['SOCKET/CPU'] . "</td>";
+									echo "<td>" . $row['FORM FACTOR'] . "</td>";
+									echo "<td>" . $row['RAM SLOTS'] . "</td>";
+									echo "<td>" . $row['MAX RAM'] . "</td>";
+									echo "<td>" . $row['PRICE'] . "</td>";
+									echo "</tr>";
+									}
+									
+									?> 
+
+									
 									</tbody>
 								</table>
 							</table>
@@ -210,38 +204,36 @@
 									<thead>
 										<tr>
 											<th scope="col-md-5">#</th>
-											<th scope="col">CPU</th>
+											<th scope="col">MEMORY</th>
 											<th scope="col">SPEED</th>
-											<th scope="col">CORES</th>
-											<th scope="col">PRICE</th>
-											<th scope="col"></th>
+											<th scope="col">TYPE</th>
+											<th scope="col">CAS</th>
+											<th scope="col">MODULES</th>
+											<th scope="col">SIZE</th>
+											<th scope="col">MODULES</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<th scope="row">1</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
-										<tr>
-											<th scope="row">2</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
-										<tr>
-											<th scope="row">3</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
+											
+									<?php
+									$result = mysqli_query($con,"SELECT * FROM memory");
+									while($row = mysqli_fetch_array($result))
+									{
+									echo "<tr>";
+									echo "<td>" . $row['#'] . "</td>";
+									echo "<td>" . $row['NAME'] . "</td>";
+									echo "<td>" . $row['SPEED'] . "</td>";
+									echo "<td>" . $row['TYPE'] . "</td>";
+									echo "<td>" . $row['CAS'] . "</td>";
+									echo "<td>" . $row['MODULES'] . "</td>";
+									echo "<td>" . $row['SIZE'] . "</td>";
+									echo "<td>" . $row['PRICE'] . "</td>";
+									echo "</tr>";
+									}
+									
+									?> 
+
+									
 									</tbody>
 								</table>
 							</table>
@@ -266,32 +258,24 @@
 											<th scope="col">PRICE</th>
 											<th scope="col"></th>
 										</tr>
-									</thead>
 									<tbody>
-										<tr>
-											<th scope="row">1</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
-										<tr>
-											<th scope="row">2</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
-										<tr>
-											<th scope="row">3</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
+											
+									<?php
+									$result = mysqli_query($con,"SELECT * FROM cpuCooler");
+									while($row = mysqli_fetch_array($result))
+									{
+									echo "<tr>";
+									echo "<td>" . $row['#'] . "</td>";
+									echo "<td>" . $row['NAME'] . "</td>";
+									echo "<td>" . $row['FAN RPM'] . "</td>";
+									echo "<td>" . $row['NOISE LEVEL'] . "</td>";
+									echo "<td>" . $row['PRICE'] . "</td>";
+									echo "</tr>";
+									}
+									
+									?> 
+
+									
 									</tbody>
 								</table>
 							</table>
@@ -316,31 +300,24 @@
 											<th scope="col"></th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<th scope="row">1</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
-										<tr>
-											<th scope="row">2</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
-										<tr>
-											<th scope="row">3</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
+										<tbody>
+											
+									<?php
+									$result = mysqli_query($con,"SELECT * FROM cpuCooler");
+									while($row = mysqli_fetch_array($result))
+									{
+									echo "<tr>";
+									echo "<td>" . $row['#'] . "</td>";
+									echo "<td>" . $row['NAME'] . "</td>";
+									echo "<td>" . $row['FAN RPM'] . "</td>";
+									echo "<td>" . $row['NOISE LEVEL'] . "</td>";
+									echo "<td>" . $row['PRICE'] . "</td>";
+									echo "</tr>";
+									}
+									
+									?> 
+
+									
 									</tbody>
 								</table>
 							</table>
@@ -364,31 +341,24 @@
 											<th scope="col"></th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<th scope="row">1</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
-										<tr>
-											<th scope="row">2</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
-										<tr>
-											<th scope="row">3</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
+										<tbody>
+											
+									<?php
+									$result = mysqli_query($con,"SELECT * FROM cpuCooler");
+									while($row = mysqli_fetch_array($result))
+									{
+									echo "<tr>";
+									echo "<td>" . $row['#'] . "</td>";
+									echo "<td>" . $row['NAME'] . "</td>";
+									echo "<td>" . $row['FAN RPM'] . "</td>";
+									echo "<td>" . $row['NOISE LEVEL'] . "</td>";
+									echo "<td>" . $row['PRICE'] . "</td>";
+									echo "</tr>";
+									}
+									
+									?> 
+
+									
 									</tbody>
 								</table>
 							</table>
@@ -414,31 +384,24 @@
 											<th scope="col"></th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<th scope="row">1</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
-										<tr>
-											<th scope="row">2</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
-										<tr>
-											<th scope="row">3</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
+										<tbody>
+											
+									<?php
+									$result = mysqli_query($con,"SELECT * FROM cpuCooler");
+									while($row = mysqli_fetch_array($result))
+									{
+									echo "<tr>";
+									echo "<td>" . $row['#'] . "</td>";
+									echo "<td>" . $row['NAME'] . "</td>";
+									echo "<td>" . $row['FAN RPM'] . "</td>";
+									echo "<td>" . $row['NOISE LEVEL'] . "</td>";
+									echo "<td>" . $row['PRICE'] . "</td>";
+									echo "</tr>";
+									}
+									
+									?> 
+
+									
 									</tbody>
 								</table>
 							</table>
@@ -462,36 +425,30 @@
 											<th scope="col"></th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<th scope="row">1</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
-										<tr>
-											<th scope="row">2</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
-										<tr>
-											<th scope="row">3</th>
-											<td>Intel Core i7-8700K</td>
-											<td>3.7 GHz</td>
-											<td>6</td>
-											<td>$$</td>
-											<td><button>cart</button></td>
-										</tr>
+										<tbody>
+											
+									<?php
+									$result = mysqli_query($con,"SELECT * FROM cpuCooler");
+									while($row = mysqli_fetch_array($result))
+									{
+									echo "<tr>";
+									echo "<td>" . $row['#'] . "</td>";
+									echo "<td>" . $row['NAME'] . "</td>";
+									echo "<td>" . $row['FAN RPM'] . "</td>";
+									echo "<td>" . $row['NOISE LEVEL'] . "</td>";
+									echo "<td>" . $row['PRICE'] . "</td>";
+									echo "</tr>";
+									}
+									
+									?> 
+
+									
 									</tbody>
 								</table>
 							</table>
 						</div>
 					</div>
+					
 				</section>
 		
 
@@ -500,6 +457,10 @@
 		</div><!-- // st-container -->
 
 	</div>
+	<?php
+	mysqli_close($con);
+	?>
+
 </body>
 <script>
 
